@@ -41,6 +41,11 @@ jobs:
           version-change-type: ${{ github.event.inputs.versionChangeType }}
           build-version: ${{ github.run_number }}
           update-eas: false
+      
+      - name: Commit changes
+        run: |
+          git add ios android
+          git commit -m "iOS / Android version bump"
 
       # - name: Setup Node
       #   uses: actions/setup-node@v2.1.2
