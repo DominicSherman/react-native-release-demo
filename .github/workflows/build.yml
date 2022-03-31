@@ -70,4 +70,4 @@ jobs:
 
       - name: Build iOS
         run: |
-          eas build --platform ios --profile ${{ github.event.inputs.releaseStage }} --non-interactive --auto-submit
+          eas build --platform ios --profile ${{ github.event.inputs.releaseStage }} --non-interactive --auto-submit --no-wait
