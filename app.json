@@ -3,6 +3,9 @@
     "name": "react-native-release-demo",
     "slug": "react-native-release-demo",
     "version": "1.0.0",
+    "ios": {
+      "bundleIdentifier": "com.echobind.reactnativereleasedemo"
+    },
     "assetBundlePatterns": [
       "**/*"
     ]
