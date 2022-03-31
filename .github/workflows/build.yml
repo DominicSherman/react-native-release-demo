@@ -61,4 +61,4 @@ jobs:
 
       - name: Build iOS
         run: |
-          eas build --platform all --profile ${{ github.event.inputs.releaseStage }}
+          eas build --platform all --profile ${{ github.event.inputs.releaseStage }} --non-interactive
