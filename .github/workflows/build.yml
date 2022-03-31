@@ -55,7 +55,8 @@ jobs:
       - name: Install EAS CLI
         uses: expo/expo-github-action@v7
         with:
-          eas-cache: false
+          expo-version: 5.x
+          eas-version: latest
           token: ${{ secrets.EXPO_CI_TOKEN }}
 
       - name: Build iOS
