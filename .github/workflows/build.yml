@@ -42,10 +42,15 @@ jobs:
           build-version: ${{ github.run_number }}
           update-eas: false
       
-      - name: Commit changes
-        run: |
-          git add ios android
-          git commit -m "iOS / Android version bump"
+      - name: Create PR with version bump
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: 'main'
+          title: 'release: ${{ github.event.inputs.releaseStage }} version release'
+          commit-message: 'release: ${{ github.event.inputs.releaseStage }} version release'
+          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          delete-branch: true
 
       # - name: Setup Node
       #   uses: actions/setup-node@v2.1.2
