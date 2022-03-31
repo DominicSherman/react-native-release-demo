@@ -46,7 +46,7 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: 'main'
+          branch: 'release-${{github.run_number}}'
           title: 'release: ${{ github.event.inputs.releaseStage }} version release'
           commit-message: 'release: ${{ github.event.inputs.releaseStage }} version release'
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
