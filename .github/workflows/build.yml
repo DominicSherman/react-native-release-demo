@@ -34,7 +34,7 @@ jobs:
           git config user.email github-actions@github.com
 
       - name: Tag on GitHub
-        uses: echobind/react-native-tagging-action
+        uses: echobind/react-native-tagging-action@v1
         with:
           github-auth-token: ${{ secrets.GITHUB_TOKEN }}
           branch-to-tag: 'main'
