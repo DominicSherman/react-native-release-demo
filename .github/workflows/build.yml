@@ -31,6 +31,15 @@ jobs:
           version-change-type: ${{ github.event.inputs.versionChangeType }}
           build-version: ${{ github.run_number }}
           update-eas: true
+
+      - name: EAS build config
+        uses: DominicSherman/mobile-release-actions/eas-build@v1
+        with:
+          apple-id: ${{ secrets.APPLE_ID }}
+          apple-asc-app-id: ${{ secrets.ASC_APPLE_ID }}
+          apple-team-id: ${{ secrets.APPLE_TEAM_ID }}
+          android-expo-deploy-key-path: ${{ secrets.ANDROID_EXPO_DEPLOY_KEY_PATH }}
+          android-submit-track: ${{ secrets.ANDROID_SUBMIT_TRACK }}
       
       # optional if you want to persist changes in the code base
       # - name: Create PR with version bump
@@ -61,4 +70,4 @@ jobs:
 
       - name: Build iOS
         run: |
-          eas build --platform all --profile ${{ github.event.inputs.releaseStage }} --non-interactive
+          eas build --platform ios --profile ${{ github.event.inputs.releaseStage }} --non-interactive --auto-submit
