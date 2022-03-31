@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "react-native-release-demo",
+    "slug": "react-native-release-demo",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "reactnativereleasedemo"
+}
