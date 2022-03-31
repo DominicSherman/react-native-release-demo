@@ -23,15 +23,6 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
 
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          cache: 'yarn'
-
-      - name: Install packages
-        run: yarn install --frozen-lockfile
-
       # - name: Versioning
       #   uses: DominicSherman/mobile-release-actions/versioning@v1
       #   with:
@@ -51,6 +42,15 @@ jobs:
       #     commit-message: 'release: ${{ github.event.inputs.releaseStage }} version release'
       #     author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
       #     delete-branch: true
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'yarn'
+
+      - name: Install packages
+        run: yarn install --frozen-lockfile
 
       - name: Install EAS CLI
         uses: expo/expo-github-action@v7
