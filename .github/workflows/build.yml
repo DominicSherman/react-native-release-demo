@@ -43,14 +43,19 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
 
-      - name: Versioning
-        uses: DominicSherman/mobile-release-actions/versioning@v1
+      - name: Tagging
+        id: tagging
+        uses: DominicSherman/mobile-release-actions/tagging@v1
         with:
           github-auth-token: ${{ secrets.GITHUB_TOKEN }}
           branch-to-tag: 'main'
           version-change-type: ${{ github.event.inputs.versionChangeType }}
           build-version: ${{ github.run_number }}
-          update-eas: true
+
+      - name: Update versions
+        uses: DominicSherman/mobile-release-actions/update-versions@v1
+        with:
+          tag: ${{ steps.tagging.outputs.tag }}
 
       - name: EAS build config
         uses: DominicSherman/mobile-release-actions/eas-config@v1
