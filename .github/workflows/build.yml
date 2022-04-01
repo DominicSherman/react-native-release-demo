@@ -64,7 +64,6 @@ jobs:
           apple-asc-app-id: ${{ secrets.ASC_APPLE_ID }}
           apple-team-id: ${{ secrets.APPLE_TEAM_ID }}
           android-expo-deploy-key-path: ${{ secrets.ANDROID_EXPO_DEPLOY_KEY_PATH }}
-          android-submit-track: ${{ secrets.ANDROID_SUBMIT_TRACK }}
 
       - name: Install EAS CLI
         uses: expo/expo-github-action@v7
@@ -89,5 +88,4 @@ jobs:
       #     commit-message: 'release: ${{ github.event.inputs.releaseStage }} version release'
       #     author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
       #     delete-branch: true
-
       
