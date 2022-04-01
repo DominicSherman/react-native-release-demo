@@ -75,7 +75,7 @@ jobs:
           token: ${{ secrets.EXPO_CI_TOKEN }}
 
       - name: Build
-        uses: DominicSherman/mobile-release-actions/eas-buid@v1
+        uses: DominicSherman/mobile-release-actions/eas-build@v1
         with:
           release-stage: ${{ github.event.inputs.releaseStage }}
           platform: ${{ github.event.inputs.platform }}
