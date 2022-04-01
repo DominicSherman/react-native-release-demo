@@ -60,12 +60,6 @@ jobs:
           apple-team-id: ${{ secrets.APPLE_TEAM_ID }}
           android-expo-deploy-key-path: ${{ secrets.ANDROID_EXPO_DEPLOY_KEY_PATH }}
           android-submit-track: ${{ secrets.ANDROID_SUBMIT_TRACK }}
-      
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          cache: 'yarn'
 
       - name: Install EAS CLI
         uses: expo/expo-github-action@v7
