@@ -3,6 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       releaseStage:
+        type: choice
         description: 'type of release'
         required: true
         default: 'alpha'
@@ -11,6 +12,7 @@ on:
           - beta
           - production
       versionChangeType:
+        type: choice
         description: 'type of version bump'
         required: true
         default: 'none'
@@ -20,6 +22,7 @@ on:
           - patch
           - none
       platform:
+        type: choice
         description: 'platform to build for'
         required: true
         default: 'all'
