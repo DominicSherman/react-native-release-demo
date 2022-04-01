@@ -3,13 +3,30 @@ on:
   workflow_dispatch:
     inputs:
       releaseStage:
-        description: 'alpha, beta or production release (alpha does not upload to TestFlight)'
+        description: 'type of release'
         required: true
         default: 'alpha'
+        options:
+          - alpha
+          - beta
+          - production
       versionChangeType:
-        description: 'Type of version bump (major, minor, patch, none)'
+        description: 'type of version bump'
         required: true
         default: 'none'
+        options:
+          - major
+          - minor
+          - patch
+          - none
+      platform:
+        description: 'platform to build for'
+        required: true
+        default: 'all'
+        options:
+          - all
+          - ios
+          - android
 
 jobs:
   build-app:
@@ -33,7 +50,7 @@ jobs:
           update-eas: true
 
       - name: EAS build config
-        uses: DominicSherman/mobile-release-actions/eas-build@v1
+        uses: DominicSherman/mobile-release-actions/eas-config@v1
         with:
           apple-id: ${{ secrets.APPLE_ID }}
           apple-asc-app-id: ${{ secrets.ASC_APPLE_ID }}
@@ -41,6 +58,25 @@ jobs:
           android-expo-deploy-key-path: ${{ secrets.ANDROID_EXPO_DEPLOY_KEY_PATH }}
           android-submit-track: ${{ secrets.ANDROID_SUBMIT_TRACK }}
       
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'yarn'
+
+      - name: Install EAS CLI
+        uses: expo/expo-github-action@v7
+        with:
+          expo-version: 5.x
+          eas-version: latest
+          token: ${{ secrets.EXPO_CI_TOKEN }}
+
+      - name: Build
+        uses: DominicSherman/mobile-release-actions/eas-buid@v1
+        with:
+          release-stage: ${{ github.event.inputs.releaseStage }}
+          platform: ${{ github.event.inputs.platform }}
+
       # optional if you want to persist changes in the code base
       # - name: Create PR with version bump
       #   uses: peter-evans/create-pull-request@v3
@@ -52,22 +88,4 @@ jobs:
       #     author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
       #     delete-branch: true
 
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          cache: 'yarn'
-
-      - name: Install packages
-        run: yarn install --frozen-lockfile
-
-      - name: Install EAS CLI
-        uses: expo/expo-github-action@v7
-        with:
-          expo-version: 5.x
-          eas-version: latest
-          token: ${{ secrets.EXPO_CI_TOKEN }}
-
-      - name: Build iOS
-        run: |
-          eas build --platform ios --profile ${{ github.event.inputs.releaseStage }} --non-interactive --auto-submit --no-wait
+      
