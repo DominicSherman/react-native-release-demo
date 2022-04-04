@@ -58,7 +58,6 @@ jobs:
         uses: DominicSherman/mobile-release-actions/tagging@v1
         with:
           github-tagging: true
-          github-auth-token: ${{ secrets.GITHUB_TOKEN }}
           create-tag: ${{ github.event.inputs.createTag }}
           branch: ${{ github.event.inputs.branch }}
           version-change-type: ${{ github.event.inputs.versionChangeType }}
