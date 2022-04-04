@@ -22,7 +22,7 @@
   "submit": {
     "beta": {
       "ios": {
-        "ascAppleId": "1617156693",
+        "ascAppId": "1617156693",
         "appleTeamId": "L29P89N9U3"
       },
       "android": {
@@ -32,7 +32,7 @@
     },
     "production": {
       "ios": {
-        "ascAppleId": "1617156693",
+        "ascAppId": "1617156693",
         "appleTeamId": "L29P89N9U3"
       },
       "android": {
