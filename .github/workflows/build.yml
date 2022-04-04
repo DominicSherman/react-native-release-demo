@@ -47,6 +47,7 @@ jobs:
         id: tagging
         uses: DominicSherman/mobile-release-actions/tagging@v1
         with:
+          github-tagging: false
           branch: ${{ github.event.inputs.branch }}
           version-change-type: ${{ github.event.inputs.versionChangeType }}
           build-version: ${{ github.run_number }}
