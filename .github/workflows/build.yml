@@ -75,6 +75,6 @@ jobs:
         uses: DominicSherman/mobile-release-actions/eas-build@v1
         with:
           platform: ${{ github.event.inputs.platform }}
-          expo-profile: ${{ github.event.inputs.releaseStage }}
-          auto-submit: ${{ github.event.inputs.releaseStage != 'alpha' }}
+          profile: ${{ github.event.inputs.releaseStage }}
+          submit: ${{ github.event.inputs.releaseStage != 'alpha' }}
       
