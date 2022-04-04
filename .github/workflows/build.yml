@@ -30,11 +30,6 @@ on:
           - all
           - ios
           - android
-      createTag:
-        type: boolean
-        description: 'create a tag for the release in github'
-        required: true
-        default: true
       branch:
         type: string
         description: 'branch to build'
@@ -48,17 +43,10 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v2
 
-      - name: Setup Git
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-
       - name: Tagging
         id: tagging
         uses: DominicSherman/mobile-release-actions/tagging@v1
         with:
-          github-tagging: true
-          create-tag: ${{ github.event.inputs.createTag }}
           branch: ${{ github.event.inputs.branch }}
           version-change-type: ${{ github.event.inputs.versionChangeType }}
           build-version: ${{ github.run_number }}
