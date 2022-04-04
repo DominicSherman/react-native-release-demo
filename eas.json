@@ -18,5 +18,27 @@
     "alpha": {},
     "beta": {},
     "production": {}
+  },
+  "submit": {
+    "beta": {
+      "ios": {
+        "ascAppleId": "1617156693",
+        "appleTeamId": "L29P89N9U3"
+      },
+      "android": {
+        "serviceAccountKeyPath": "*.{ts,tsx}",
+        "track": "beta"
+      }
+    },
+    "production": {
+      "ios": {
+        "ascAppleId": "1617156693",
+        "appleTeamId": "L29P89N9U3"
+      },
+      "android": {
+        "serviceAccountKeyPath": "",
+        "track": "beta"
+      }
+    }
   }
 }

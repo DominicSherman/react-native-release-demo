@@ -6,7 +6,7 @@ on:
         type: choice
         description: 'type of release'
         required: true
-        default: 'alpha'
+        default: 'beta'
         options:
           - alpha
           - beta
@@ -30,6 +30,16 @@ on:
           - all
           - ios
           - android
+      create-tag:
+        type: boolean
+        description: 'create a tag for the release in github'
+        required: true
+        default: true
+      branch:
+        type: string
+        description: 'branch to build'
+        required: true
+        default: 'main'
 
 jobs:
   build-app:
@@ -47,23 +57,12 @@ jobs:
         id: tagging
         uses: DominicSherman/mobile-release-actions/tagging@v1
         with:
+          github-tagging: true
           github-auth-token: ${{ secrets.GITHUB_TOKEN }}
-          branch-to-tag: 'main'
+          create-tag: ${{ github.event.inputs.create-tag }}
+          branch: ${{ github.event.inputs.branch }}
           version-change-type: ${{ github.event.inputs.versionChangeType }}
           build-version: ${{ github.run_number }}
-
-      - name: Update versions
-        uses: DominicSherman/mobile-release-actions/update-versions@v1
-        with:
-          tag: ${{ steps.tagging.outputs.tag }}
-
-      - name: EAS build config
-        uses: DominicSherman/mobile-release-actions/eas-config@v1
-        with:
-          apple-id: ${{ secrets.APPLE_ID }}
-          apple-asc-app-id: ${{ secrets.ASC_APPLE_ID }}
-          apple-team-id: ${{ secrets.APPLE_TEAM_ID }}
-          android-expo-deploy-key-path: ${{ secrets.ANDROID_EXPO_DEPLOY_KEY_PATH }}
 
       - name: Install EAS CLI
         uses: expo/expo-github-action@v7
@@ -75,17 +74,7 @@ jobs:
       - name: Build
         uses: DominicSherman/mobile-release-actions/eas-build@v1
         with:
-          release-stage: ${{ github.event.inputs.releaseStage }}
           platform: ${{ github.event.inputs.platform }}
-
-      # optional if you want to persist changes in the code base
-      # - name: Create PR with version bump
-      #   uses: peter-evans/create-pull-request@v3
-      #   with:
-      #     token: ${{ secrets.GITHUB_TOKEN }}
-      #     branch: 'release-${{github.run_number}}'
-      #     title: 'release: ${{ github.event.inputs.releaseStage }} version release'
-      #     commit-message: 'release: ${{ github.event.inputs.releaseStage }} version release'
-      #     author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
-      #     delete-branch: true
+          expo-profile: ${{ github.event.inputs.releaseStage }}
+          auto-submit: ${{ github.event.inputs.releaseStage != 'alpha' }}
       
