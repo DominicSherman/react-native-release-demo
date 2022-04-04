@@ -30,7 +30,7 @@ on:
           - all
           - ios
           - android
-      create-tag:
+      createTag:
         type: boolean
         description: 'create a tag for the release in github'
         required: true
@@ -59,7 +59,7 @@ jobs:
         with:
           github-tagging: true
           github-auth-token: ${{ secrets.GITHUB_TOKEN }}
-          create-tag: ${{ github.event.inputs.create-tag }}
+          create-tag: ${{ github.event.inputs.createTag }}
           branch: ${{ github.event.inputs.branch }}
           version-change-type: ${{ github.event.inputs.versionChangeType }}
           build-version: ${{ github.run_number }}
