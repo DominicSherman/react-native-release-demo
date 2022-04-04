@@ -45,7 +45,7 @@ jobs:
 
       - name: Tagging
         id: tagging
-        uses: DominicSherman/mobile-release-actions/tagging@v1
+        uses: echobind/mobile-release-actions/tagging@v1
         with:
           github-tagging: false
           branch: ${{ github.event.inputs.branch }}
@@ -60,7 +60,7 @@ jobs:
           token: ${{ secrets.EXPO_CI_TOKEN }}
 
       - name: Build
-        uses: DominicSherman/mobile-release-actions/eas-build@v1
+        uses: echobind/mobile-release-actions/eas-build@v1
         with:
           platform: ${{ github.event.inputs.platform }}
           profile: ${{ github.event.inputs.releaseStage }}
