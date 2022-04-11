@@ -55,8 +55,11 @@ jobs:
       - name: Pull environment variables
         uses: echobind/mobile-release-actions/doppler-env@v1
         env:
-          
-
+          ALPHA_DOPPLER_TOKEN: ${{ secrets.ALPHA_DOPPLER_TOKEN }}
+          BETA_DOPPLER_TOKEN: ${{ secrets.BETA_DOPPLER_TOKEN }}
+          PRODUCTION_DOPPLER_TOKEN: ${{ secrets.PRODUCTION_DOPPLER_TOKEN }}
+        with:
+          releaseStage: ${{ github.event.inputs.releaseStage }}
 
       - name: Install EAS CLI
         uses: expo/expo-github-action@v7
