@@ -70,5 +70,5 @@ jobs:
         with:
           platform: ${{ github.event.inputs.platform }}
           profile: ${{ github.event.inputs.releaseStage }}
-          submit: ${{ github.event.inputs.releaseStage != 'alpha' }}
+          submit: false
       
