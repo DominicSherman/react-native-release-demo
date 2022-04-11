@@ -45,12 +45,18 @@ jobs:
 
       - name: Tagging
         id: tagging
-        uses: echobind/mobile-release-actions/tagging@v1.2.0
+        uses: echobind/mobile-release-actions/tagging@v1
         with:
           github-tagging: false
           branch: ${{ github.event.inputs.branch }}
           version-change-type: ${{ github.event.inputs.versionChangeType }}
           build-version: ${{ github.run_number }}
+
+      - name: Pull environment variables
+        uses: echobind/mobile-release-actions/doppler-env@v1
+        env:
+          
+
 
       - name: Install EAS CLI
         uses: expo/expo-github-action@v7
@@ -60,7 +66,7 @@ jobs:
           token: ${{ secrets.EXPO_CI_TOKEN }}
 
       - name: Build
-        uses: echobind/mobile-release-actions/eas-build@v1.2.0
+        uses: echobind/mobile-release-actions/eas-build@v1
         with:
           platform: ${{ github.event.inputs.platform }}
           profile: ${{ github.event.inputs.releaseStage }}

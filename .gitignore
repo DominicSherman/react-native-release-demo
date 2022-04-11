@@ -80,6 +80,8 @@ DerivedData
 *.xcuserstate
 project.xcworkspace
 
+.env
+
 # Android/IntelliJ
 #
 build/

@@ -15,9 +15,15 @@
     "preview": {
       "distribution": "internal"
     },
-    "alpha": {},
-    "beta": {},
-    "production": {}
+    "alpha": {
+      "distribution": "internal"
+    },
+    "beta": {
+      "distribution": "internal"
+    },
+    "production": {
+      "distribution": "internal"
+    }
   },
   "submit": {
     "beta": {

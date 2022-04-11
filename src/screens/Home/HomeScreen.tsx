@@ -9,7 +9,7 @@ import { Text } from '@/components/Text';
 export const HomeScreen: FC = () => {
   return (
     <Screen testID="HomeScreen" alignItems="center" justifyContent="center">
-      <Text>Home Screen</Text>
+      <Text>{`MY_ENV_VALUE: ${process.env.MY_ENV_VALUE}`}</Text>
     </Screen>
   );
 };
