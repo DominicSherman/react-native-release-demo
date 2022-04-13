@@ -12,9 +12,6 @@
         "buildConfiguration": "Debug"
       }
     },
-    "preview": {
-      "distribution": "internal"
-    },
     "alpha": {
       "distribution": "internal"
     },
