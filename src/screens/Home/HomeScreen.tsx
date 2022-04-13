@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { MY_ENV_VALUE, NEW_VALUE } from '@env';
+import Constants from 'expo-constants';
 
 import { Screen } from '@/components/Screen';
 import { Text } from '@/components/Text';
@@ -10,8 +10,7 @@ import { Text } from '@/components/Text';
 export const HomeScreen: FC = () => {
   return (
     <Screen testID="HomeScreen" alignItems="center" justifyContent="center">
-      <Text>{`MY_ENV_VALUE: ${MY_ENV_VALUE}`}</Text>
-      <Text>{`NEW_VALUE: ${NEW_VALUE}`}</Text>
+      <Text>{`MY_ENV_VALUE: ${Constants.manifest?.extra?.MY_ENV_VALUE}`}</Text>
     </Screen>
   );
 };
